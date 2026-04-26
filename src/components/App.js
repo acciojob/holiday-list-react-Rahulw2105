@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import './../styles/App.css';
 
 const App = () => {
+  const [indianCities,setIndianCities] = useState([]);
     const cityList = [{ name: 'Goa', country: 'India' },
     { name: 'Amsterdam', country: 'Netherlands' },
     { name: 'New York', country: 'USA' },
@@ -33,9 +34,19 @@ const App = () => {
     { name: 'Tirupati', country: 'India' },
     ]
     
+
+    useEffect(() => {
+       const filtered = cityList.filter((city) => city.country === 'India' )
+       setIndianCities(filtered);
+    },[]);
   return (
     <div id="main">
                {/* Do not remove the main div */}
+        {indianCities.map((city,index) => (
+          <li key={`location${index + 1}`}>
+             {city.name}
+          </li>
+        ))}
     </div>
   )
 }
